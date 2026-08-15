@@ -1,0 +1,26 @@
+# Local environment files
+.env
+.env.*
+
+# Local secrets and TLS material
+srcs/secrets/
+*.key
+*.pem
+*.csr
+*.srl
+*.crt
+
+# Logs and runtime output
+*.log
+logs/
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local Docker and temporary files
+docker-data/
+*.tmp
