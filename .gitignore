@@ -24,3 +24,6 @@ Thumbs.db
 # Local Docker and temporary files
 docker-data/
 *.tmp
+
+# Local Inception secret files
+/secrets/
