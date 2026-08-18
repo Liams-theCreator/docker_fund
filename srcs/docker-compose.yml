@@ -14,6 +14,24 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception_network
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    image: wordpress:1.0
+    container_name: wordpress
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    secrets:
+      - db_password
+      - wp_admin_password
+      - wp_standard_password
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception_network
 
 networks:
   inception_network:
@@ -29,8 +47,20 @@ volumes:
       o: bind
       device: /home/imellali/data/mariadb
 
+  wordpress_data:
+    name: wordpress_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/imellali/data/wordpress
+
 secrets:
   db_root_password:
     file: ../secrets/db_root_password.txt
   db_password:
     file: ../secrets/db_password.txt
+  wp_admin_password:
+    file: ../secrets/wp_admin_password.txt
+  wp_standard_password:
+    file: ../secrets/wp_standard_password.txt
