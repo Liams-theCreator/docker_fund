@@ -99,7 +99,7 @@ if ! wp user get "$WP_STANDARD_USER" --field=ID --allow-root >/dev/null 2>&1; th
     echo "Creating the standard WordPress user"
     wp user create "$WP_STANDARD_USER" "$WP_STANDARD_EMAIL" \
         --user_pass="$WP_STANDARD_PASSWORD" \
-        --role=editor \
+        --role=subscriber \
         --allow-root
 fi
 
