@@ -32,6 +32,22 @@ services:
       - wordpress_data:/var/www/html
     networks:
       - inception_network
+  nginx:
+    build:
+      context: ./requirements/nginx
+    image: nginx:1.0
+    container_name: nginx
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_data:/var/www/html:ro
+    networks:
+      - inception_network
 
 networks:
   inception_network:
